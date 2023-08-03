@@ -1,0 +1,15 @@
+<h1>Lists</h1>
+
+<h2>Add a List</h2>
+
+<form method="POST" action="/lists">
+  Name: <input type="text" name="name" />
+  <input type="submit" value="Create List!" />
+</form>
+
+<h2>Active Lists</h2>
+    <ul>
+    <% it.lists.forEach((list) => { %>
+      <li><%= list.name %></li>
+    <% }); %>
+    </ul>
