@@ -1,0 +1,17 @@
+<h1><%= it.list.name %></h1>
+
+<h2>Add an Item</h2>
+
+<form method="POST" action="/lists/<%= it.list.id %>/items">
+  Name: <input type="text" name="name" />
+  <input type="submit" value="Add Item!" />
+</form>
+
+<h2>Items</h2>
+<ul>
+<% it.items.forEach((item) => { %>
+  <li><%= item.name %></li>
+<% }); %>
+</ul>
+
+<a href="/lists">Shopping lists</a>

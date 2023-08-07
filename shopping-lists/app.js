@@ -16,11 +16,22 @@ const handleRequest = async (request) => {
         "Location": "/lists",
       },
     });
-  } else if (url.pathname === "/lists" && request.method === "POST") {
+  } 
+
+  else if (url.pathname.startsWith("/lists/") && request.method === "GET") {
+    return await listController.viewList(request);
+  } 
+  else if (url.pathname.endsWith("/items") && request.method === "POST") {
+    return await listController.addListItem(request);
+  }
+  
+  else if (url.pathname === "/lists" && request.method === "POST") {
     return await listController.addList(request);
-  } else if (url.pathname === "/lists" && request.method === "GET") {
+  } 
+  else if (url.pathname === "/lists" && request.method === "GET") {
     return await listController.viewLists(request);
-  } else {
+  } 
+  else {
     return new Response("Not found", { status: 404 });
   }
 };

@@ -8,4 +8,9 @@ const findAllLists = async () => {
   return await sql`SELECT * FROM shopping_lists WHERE active = TRUE`;
 };
 
-export { create, findAllLists };
+const findOne = async (id) => {
+  const list = await sql`SELECT * FROM shopping_lists WHERE id = ${id} AND active = TRUE`;
+  return list[0];
+};
+
+export { create, findAllLists, findOne };
