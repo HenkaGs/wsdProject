@@ -18,7 +18,6 @@ const redirectTo = (path) => {
 const addList = async (request) => {
   const formData = await request.formData();
   const name = formData.get("name");
-console.log(name)
   await listService.create(name);
 
   return redirectTo("/lists");
@@ -28,19 +27,18 @@ const viewLists = async (request) => {
   const data = {
     lists: await listService.findAllLists(),
   };
-
   return new Response(await renderFile("lists.eta", data), responseDetails);
 };
 
 const viewList = async (request) => {
+  
   const url = new URL(request.url);
   const listId = url.pathname.split('/')[2];
-
+  const one = await listService.findOne(listId)
   const data = {
-    list: await listService.findOne(listId),
+    list: one,
     items: await itemService.findItemsByListId(listId),
   };
-  console.log(data)
 
   return new Response(await renderFile("list.eta", data), responseDetails);
 };

@@ -1,6 +1,5 @@
 import { serve } from "./deps.js";
-import { configure, renderFile } from "./deps.js";
-import { sql } from "./database/database.js";
+import { configure } from "./deps.js";
 import * as listController from "./controllers/listController.js";
 
 configure({

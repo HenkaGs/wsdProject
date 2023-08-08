@@ -10,7 +10,7 @@ const findAllLists = async () => {
 
 const findOne = async (id) => {
   const list = await sql`SELECT * FROM shopping_lists WHERE id = ${id} AND active = TRUE`;
-  return list[0];
+  return list;
 };
 
 const deactivate = async (listId) => {
