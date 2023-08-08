@@ -56,4 +56,24 @@ const addListItem = async (request) => {
   return redirectTo(`/lists/${listId}`);
 };
 
-export { addList, viewLists, viewList, addListItem };
+const collectItem = async (request) => {
+  const url = new URL(request.url);
+  const segments = url.pathname.split('/');
+  const listId = segments[2];
+  const itemId = segments[4];
+
+  await itemService.markAsCollected(itemId);
+
+  return redirectTo(`/lists/${listId}`);
+};
+
+const deactivateList = async (request) => {
+  const url = new URL(request.url);
+  const listId = url.pathname.split('/')[2];
+
+  await listService.deactivate(listId);
+
+  return redirectTo('/lists');
+};
+
+export { addList, viewLists, viewList, addListItem, collectItem, deactivateList };

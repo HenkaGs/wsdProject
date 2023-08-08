@@ -17,14 +17,18 @@ const handleRequest = async (request) => {
       },
     });
   } 
-
+  else if (url.pathname.endsWith("/deactivate") && request.method === "POST") {
+    return await listController.deactivateList(request);
+  }
+  else if (url.pathname.endsWith("/collect") && request.method === "POST") {
+    return await listController.collectItem(request);
+  }
   else if (url.pathname.startsWith("/lists/") && request.method === "GET") {
     return await listController.viewList(request);
   } 
   else if (url.pathname.endsWith("/items") && request.method === "POST") {
     return await listController.addListItem(request);
   }
-  
   else if (url.pathname === "/lists" && request.method === "POST") {
     return await listController.addList(request);
   } 

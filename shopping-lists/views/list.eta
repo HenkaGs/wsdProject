@@ -10,7 +10,16 @@
 <h2>Items</h2>
 <ul>
 <% it.items.forEach((item) => { %>
-  <li><%= item.name %></li>
+  <li>
+    <% if (item.collected) { %>
+      <del><%= item.name %></del>
+    <% } else { %>
+      <%= item.name %>
+      <form method="POST" action="/lists/<%= it.list.id %>/items/<%= item.id %>/collect" style="display: inline;">
+        <input type="submit" value="Mark collected!" />
+      </form>
+    <% } %>
+  </li>
 <% }); %>
 </ul>
 

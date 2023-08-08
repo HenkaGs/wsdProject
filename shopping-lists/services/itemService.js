@@ -5,7 +5,11 @@ const createItem = async (listId, name) => {
 };
 
 const findItemsByListId = async (listId) => {
-  return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${listId}`;
+  return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${listId} ORDER BY collected, name ASC`;
 };
 
-export { createItem, findItemsByListId };
+const markAsCollected = async (itemId) => {
+  await sql`UPDATE shopping_list_items SET collected = TRUE WHERE id = ${itemId}`;
+};
+
+export { createItem, findItemsByListId, markAsCollected };
