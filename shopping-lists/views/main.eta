@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<% layout("./layouts/layout.eta") %>
+<head>
+  <title>Shared shopping lists</title>
+</head>
+<body>
+  <h1>Shared Shopping Lists</h1>
+
+  <div>
+    <p>Statistics:</p>
+    <ul>
+      <li>Number of Shopping Lists: <%= it.numberOfLists %></li>
+      <li>Number of Items: <%= it.numberOfItems %></li>
+    </ul>
+  </div>
+
+  <a href="/lists">Lists</a>
+</body>
+</html>

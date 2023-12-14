@@ -10,12 +10,7 @@ const handleRequest = async (request) => {
   const url = new URL(request.url);
 
   if (url.pathname === "/" && request.method === "GET") {
-    return new Response(`Redirecting to /lists.`, {
-      status: 303,
-      headers: {
-        "Location": "/lists",
-      },
-    });
+    return await listController.viewMainPage(request);
   } 
   else if (url.pathname.endsWith("/deactivate") && request.method === "POST") {
     return await listController.deactivateList(request);

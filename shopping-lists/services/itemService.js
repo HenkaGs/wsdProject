@@ -12,4 +12,9 @@ const markAsCollected = async (itemId) => {
   await sql`UPDATE shopping_list_items SET collected = TRUE WHERE id = ${itemId}`;
 };
 
-export { createItem, findItemsByListId, markAsCollected };
+const countItems = async () => {
+  const result = await sql`SELECT COUNT(*) FROM shopping_list_items`;
+  return result.rows[0].count;
+};
+
+export { createItem, findItemsByListId, markAsCollected, countItems };

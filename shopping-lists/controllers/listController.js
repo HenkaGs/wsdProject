@@ -15,6 +15,18 @@ const redirectTo = (path) => {
   });
 };
 
+const viewMainPage = async (request) => {
+  const numberOfLists = await listService.countLists(); 
+  const numberOfItems = await itemService.countItems(); 
+
+  const data = {
+    numberOfLists,
+    numberOfItems,
+  };
+
+  return new Response(await renderFile("main.eta", data), responseDetails);
+};
+
 const addList = async (request) => {
   const formData = await request.formData();
   const name = formData.get("name");
@@ -74,4 +86,4 @@ const deactivateList = async (request) => {
   return redirectTo('/lists');
 };
 
-export { addList, viewLists, viewList, addListItem, collectItem, deactivateList };
+export { addList, viewLists, viewList, addListItem, collectItem, deactivateList, viewMainPage };
