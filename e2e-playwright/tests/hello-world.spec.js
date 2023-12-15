@@ -50,7 +50,7 @@ test('Can mark item as collected from "Test List"', async ({ page }) => {
   await page.goto('http://localhost:7777/lists');
   await page.locator('a:text("Test List")').click();
   await page.click('input[value="Mark collected!"]');
-  const itemElement = await page.$('div');
+  const itemElement = await page.$('del');
   expect(itemElement).not.toBeNull();
 });
 
