@@ -15,7 +15,7 @@
 <% it.items.rows.forEach((item) => { %>
   <li>
     <% if (item.collected) { %>
-      <del><%= item.name %></del>
+      <div><%= item.name %></div>
     <% } else { %>
       <%= item.name %>
       <form method="POST" action="/lists/<%= it.list.rows[0].id %>/items/<%= item.id %>/collect" style="display: inline;">
