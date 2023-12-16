@@ -22,6 +22,7 @@ const viewMainPage = async (request) => {
   const data = {
     numberOfLists,
     numberOfItems,
+    noListsYet: numberOfLists === 0,
   };
 
   return new Response(await renderFile("main.eta", data), responseDetails);
