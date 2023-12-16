@@ -11,8 +11,8 @@
     <div>
       <p>Statistics:</p>
       <ul>
-        <li>Number of Shopping Lists: <%= it.numberOfLists %></li>
-        <li>Number of Items: <%= it.numberOfItems %></li>
+        <li>Shopping lists: <%= it.numberOfLists %></li>
+        <li>Shopping list items: <%= it.numberOfItems %></li>
       </ul>
     </div>
   <% } else { %>
