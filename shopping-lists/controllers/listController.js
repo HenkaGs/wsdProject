@@ -1,4 +1,4 @@
-import { renderFile } from "https://deno.land/x/eta@v2.0.0/mod.ts";
+import { renderFile } from "https://deno.land/x/eta@v2.2.0/mod.ts";
 import * as listService from "../services/listService.js";
 import * as itemService from "../services/itemService.js";
 
