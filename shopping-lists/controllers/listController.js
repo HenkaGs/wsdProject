@@ -16,8 +16,8 @@ const redirectTo = (path) => {
 };
 
 const viewMainPage = async (request) => {
-  const numberOfLists = await listService.countLists(); 
-  const numberOfItems = await itemService.countItems(); 
+  const numberOfLists = await listService.countLists() || 0; 
+  const numberOfItems = await itemService.countItems() || 0;
 
   const data = {
     numberOfLists,
