@@ -7,9 +7,7 @@
 <body>
   <h1>Shared Shopping Lists</h1>
 
-  <% if (it.noListsYet) { %>
-  <p>No shopping lists yet.</p>
-  <% } else { %>
+  <% if (it.hasLists) { %>
     <div>
       <p>Statistics:</p>
       <ul>
@@ -17,6 +15,8 @@
         <li>Number of Items: <%= it.numberOfItems %></li>
       </ul>
     </div>
+  <% } else { %>
+    <p>No shopping lists yet.</p>
   <% } %>
 
   <a href="/lists">Lists</a>
