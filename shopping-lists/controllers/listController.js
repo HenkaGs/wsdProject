@@ -1,6 +1,7 @@
 import { renderFile } from "https://deno.land/x/eta@v2.2.0/mod.ts";
 import * as listService from "../services/listService.js";
 import * as itemService from "../services/itemService.js";
+import * as requestUtils from "../utils/requestUtils.js";
 
 const responseDetails = {
   headers: { "Content-Type": "text/html;charset=UTF-8" },
@@ -16,13 +17,12 @@ const redirectTo = (path) => {
 };
 
 const viewMainPage = async (request) => {
-  const numberOfLists = await listService.countLists() || 0; 
-  const numberOfItems = await itemService.countItems() || 0;
+  const numberOfLists = await listService.countLists(); 
+  const numberOfItems = await itemService.countItems();
 
   const data = {
-    numberOfLists,
-    numberOfItems,
-    hasLists: numberOfLists > 0,
+    lists: numberOfLists,
+    items: numberOfItems,
   };
 
   return new Response(await renderFile("main.eta", data), responseDetails);
@@ -58,13 +58,13 @@ const viewList = async (request) => {
 
 const addListItem = async (request) => {
   const url = new URL(request.url);
-  const listId = url.pathname.split('/')[2];
+  const urlparts = url.pathname.split("/");
+  const listId = urlparts[2];
   const formData = await request.formData();
   const name = formData.get("name");
-
   await itemService.createItem(listId, name);
 
-  return redirectTo(`/lists/${listId}`);
+  return requestUtils.redirectTo("/lists/" + listId);
 };
 
 const collectItem = async (request) => {
