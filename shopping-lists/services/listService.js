@@ -18,8 +18,11 @@ const deactivate = async (listId) => {
 };
 
 const countLists = async () => {
-  const result = await sql`SELECT COUNT(*) FROM shopping_lists`;
-  return result.rows[0].count;
+  const results = await sql`SELECT * FROM shopping_lists `;
+  if (results && results.length > 0) {
+    return results;
+  }
+  return false;
 };
 
 export { create, findAllLists, findOne, deactivate, countLists };

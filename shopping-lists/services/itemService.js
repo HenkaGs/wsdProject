@@ -13,8 +13,12 @@ const markAsCollected = async (itemId) => {
 };
 
 const countItems = async () => {
-  const result = await sql`SELECT COUNT(*) FROM shopping_list_items`;
-  return result.rows[0].count;
+  const results = await sql`SELECT * FROM shopping_list_items`;
+  if (results && results.length > 0) {
+
+    return results;
+  }
+  return false;
 };
 
 export { createItem, findItemsByListId, markAsCollected, countItems };
